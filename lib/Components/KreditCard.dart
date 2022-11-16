@@ -25,6 +25,45 @@ class _KreditCardState extends State<KreditCard> {
   var showfull = false;
 
   Widget buildItems(BuildContext context) {
+    dynamic inputArray = widget.arrayofnumber.split('');
+    int inputLength = inputArray.length;
+    String cardType = "mastercard";
+
+    //Visa, Mastercard, Discover
+    int cardNumberLength = 16;
+
+    if (inputLength > 1 && inputArray[0] == "3") {
+      if (inputArray[1] == "4" || inputArray[1] == "7") {
+        //American Express
+        cardType = "amex";
+        cardNumberLength = 15;
+      } else if (inputArray[1] == "0" ||
+          inputArray[1] == "6" ||
+          inputArray[1] == "8") {
+        //Diners Club,Carte Blanche
+        cardType = "dinersclub";
+        cardNumberLength = 14;
+      }
+    } else if (inputLength > 0) {
+      if (inputArray[0] == "4") {
+        cardType = "visa";
+      } else if (inputArray[0] == "6") {
+        cardType = "discover";
+      }
+    }
+
+    String outputText = '';
+    for (int i = 0; i < cardNumberLength; i++) {
+      if (i >= inputLength) {
+        outputText += "#";
+      } else {
+        outputText += inputArray[i];
+      }
+    }
+    var outputTextArray = outputText
+        .replaceAllMapped(RegExp(r".{4}"), (match) => "${match.group(0)} ")
+        .split('');
+
     return Container(
       width: 300,
       height: 220,
