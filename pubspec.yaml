@@ -65,6 +65,10 @@ flutter:
     - assets/24.jpeg
     - assets/chip.png
     - assets/mastercard.png
+    - assets/amex.png
+    - assets/dinersclub.png
+    - assets/discover.png
+    - assets/visa.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
