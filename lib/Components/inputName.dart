@@ -3,9 +3,9 @@ import 'package:lab2/theme/app_theme.dart';
 import 'package:lab2/Components/chipAndmc.dart';
 
 class inputName extends StatefulWidget {
-  
+  final Function flipFunction;
  final Function callbackFunction;
-  inputName(  {Key? key, required this.callbackFunction}) : super(key: key);
+  inputName(  {Key? key, required this.callbackFunction, required this.flipFunction}) : super(key: key);
 
   @override
   State<inputName> createState() => _inputNameState();
@@ -26,7 +26,11 @@ class _inputNameState extends State<inputName> {
                 onChanged: (value) {
                  setState(() {
                   widget.callbackFunction(value);
+                  
                   });
+                },
+                onTap: () {
+                  widget.flipFunction();
                 },
               );
 }

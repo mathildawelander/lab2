@@ -7,7 +7,12 @@ class inputExpire extends StatefulWidget {
   
  final Function callbackFunction;
   final Function callbackFunctionYear;
-  inputExpire(  {Key? key, required this.callbackFunction,  required this.callbackFunctionYear}) : super(key: key);
+  final Function callbackFunctioncvv;
+final Function callbackFlip;
+final Function flipFunction;
+  
+  inputExpire(  {Key? key, required this.callbackFunction,  required this.callbackFunctionYear, required this.callbackFunctioncvv,
+  required this.callbackFlip, required this.flipFunction}) : super(key: key);
 
   @override
   State<inputExpire> createState() => _inputExpireState();
@@ -31,7 +36,7 @@ class _inputExpireState extends State<inputExpire> {
       decoration: BoxDecoration( 
                       borderRadius: BorderRadius.circular(5),border: Border.all(color: Colors.black38)
                           ),
-       child: DropdownButtonExpire(callbackFunction: widget.callbackFunction)
+       child: DropdownButtonExpire(callbackFunction: widget.callbackFunction, flipFunction: widget.flipFunction)
     ),
 
     Container(
@@ -39,9 +44,9 @@ class _inputExpireState extends State<inputExpire> {
       decoration: BoxDecoration( 
                       borderRadius: BorderRadius.circular(5),border: Border.all(color: Colors.black38)
                           ),
-       child:DropdownButtonExpire(callbackFunction: widget.callbackFunctionYear)
+       child:DropdownButtonExpire(callbackFunction: widget.callbackFunctionYear, flipFunction: widget.flipFunction)
     ),
-    const SizedBox(
+    SizedBox(
       width: 100.0,
       
       child:TextField(
@@ -49,14 +54,20 @@ class _inputExpireState extends State<inputExpire> {
                     labelStyle: TextStyle(fontSize: 24, color: Colors.black),
                     border: OutlineInputBorder(),
                        contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      
-                )
+                    
+                ),
+                onChanged: (value) {
+                  widget.callbackFunctioncvv(value);
+                },
+                onTap: () {
+                  widget.callbackFlip();
+                },
+           
               ),
     )
   ],
             );
 }
-
     @override
   Widget build(BuildContext context) {
     

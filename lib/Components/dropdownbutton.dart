@@ -7,10 +7,10 @@ List<String> list = <String>["1", "2", "3", "4"];
 
 class DropdownButtonExpire extends StatefulWidget {
   
-
+final Function flipFunction;
   final Function callbackFunction;
   
-  DropdownButtonExpire({super.key, required this.callbackFunction});
+  DropdownButtonExpire({super.key, required this.callbackFunction, required this.flipFunction});
 
   @override
   State<DropdownButtonExpire> createState() => _DropdownButtonExpireState();
@@ -37,6 +37,9 @@ class _DropdownButtonExpireState extends State<DropdownButtonExpire> {
         setState(() {
           dropdownValue = value!;
         });
+      },
+      onTap: () {
+        widget.flipFunction();
       },
       items: list.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
